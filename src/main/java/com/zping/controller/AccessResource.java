@@ -10,8 +10,6 @@
  */
 package com.zping.controller;
 
-import com.google.common.collect.Maps;
-
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -27,25 +25,15 @@ import java.util.Map;
  * @since [产品/模块版本]
  */
 @Path ("/access")
-public class AccessResource
+public interface AccessResource
 {
 	@POST
 	@Path ("/test")
 	@Produces (MediaType.APPLICATION_JSON)
-	public Map<String, Object> test()
-	{
-		Map<String, Object> maps = Maps.newHashMap ();
-		maps.put ("resultCode", "0");
-		return maps;
-	}
+	public Map<String, Object> test () throws Exception;
 
 	@POST
 	@Path ("sayHello")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Map<String, Object> sayHello()
-	{
-		Map<String, Object> maps = Maps.newHashMap ();
-		maps.put ("resultCode", "0");
-		return maps;
-	}
+	@Produces (MediaType.APPLICATION_JSON)
+	public Map<String, Object> sayHello () throws Exception;
 }

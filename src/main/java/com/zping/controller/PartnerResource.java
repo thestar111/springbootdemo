@@ -10,11 +10,7 @@
  */
 package com.zping.controller;
 
-import com.google.common.collect.Maps;
 import com.zping.vo.Result;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.subject.Subject;
 
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -31,44 +27,16 @@ import java.util.Map;
  * @since [产品/模块版本]
  */
 @Path ("/")
-public class PartnerResource
+public interface PartnerResource
 {
 
 	@POST
 	@Path ("/test")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Map<String, Object> test()
-	{
-		Map<String, Object> maps = Maps.newHashMap ();
-		maps.put ("resultCode", "0");
-		return maps;
-	}
+	public Map<String, Object> test() throws Exception;
 
 	@POST
 	@Path ("/login")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Result<String> login()
-	{
-		System.out.println ("login ... ");
-		Result<String> result = new Result<> ();
-
-		Subject subject= SecurityUtils.getSubject();
-
-		//先登出
-		SecurityUtils.getSecurityManager ().logout (subject);
-
-		if(!subject.isAuthenticated ())
-		{
-			UsernamePasswordToken token = new UsernamePasswordToken ("admin", "123456");
-			subject.login (token);
-			result.setResultCode ("0");
-			result.setResultMsg ("login success.");
-		}
-		else
-		{
-			result.setResultCode ("0");
-			result.setResultMsg ("user alerady login.");
-		}
-		return result;
-	}
+	public Result<String> login() throws Exception;
 }

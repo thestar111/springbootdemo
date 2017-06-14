@@ -2,7 +2,7 @@
 profiles: dev
 #export port
 server:
-  port: 8089
+  port: 8080
 #datasource
 spring:
   datasource:

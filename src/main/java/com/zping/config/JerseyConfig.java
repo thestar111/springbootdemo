@@ -10,11 +10,13 @@
  */
 package com.zping.config;
 
+import com.zping.controller.impl.AppResourceImpl;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.spring.scope.RequestContextFilter;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 import org.springframework.core.type.filter.AnnotationTypeFilter;
+import org.springframework.stereotype.Component;
 import org.springframework.util.ClassUtils;
 
 import javax.ws.rs.Path;
@@ -36,14 +38,15 @@ public class JerseyConfig extends ResourceConfig
 
     public JerseyConfig()
     {
+        System.out.println ("init resource ... ");
         register(RequestContextFilter.class);
         register (JacksonFeature.class);
-
+        //register (AppResourceImpl.class);
         //启用扫描
         ClassPathScanningCandidateComponentProvider scanner = new ClassPathScanningCandidateComponentProvider (false);
 
         //扫描Path，provider
-        scanner.addIncludeFilter (new AnnotationTypeFilter (Path.class));
+        scanner.addIncludeFilter (new AnnotationTypeFilter (Component.class));
         scanner.addIncludeFilter (new AnnotationTypeFilter (Provider.class));
         //将带有Path，Provider注解加入到资源中
         registerClasses (scanner.findCandidateComponents (RESTFUL_BASE_PACKAGE).stream ()

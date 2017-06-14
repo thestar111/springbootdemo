@@ -1,7 +1,7 @@
 #Production
 profiles: pro
 server:
-  port: 8099
+  port: 8088
 spring:
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/test?autoReconnect=true&useSSL=false
@@ -20,3 +20,21 @@ spring:
       enabled: false
 logging:
   config: classpath:log4j.xml
+#Config Actuator Health, config auth false
+management:
+  port: 54001
+  security:
+    enabled: false
+  health:
+    mail:
+      enabled: false
+#从pom.xml中获取
+info:
+  app:
+    name: "@project.name@"
+    description: "@project.description@"
+    version: "@project.version@"
+    spring-boot-version: "@project.parent.version@"
+endpoints:
+  health:
+    sensitive: false

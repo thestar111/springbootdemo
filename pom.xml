@@ -136,6 +136,12 @@
 			<artifactId>spring-boot-starter-log4j2</artifactId>
 		</dependency>
 
+		<!--添加系统应用监控-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
 		<!-- springboot 中修改文件后自动reload的插件，修改完文件Ctrl + F9 make-下就可以了
 		<dependency>
 			<groupId>org.springframework</groupId>

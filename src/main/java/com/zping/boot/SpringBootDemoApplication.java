@@ -29,7 +29,6 @@ public class SpringBootDemoApplication
 
 	public static void main (String[] args)
 	{
-		logger.debug ("dsfsdfdsf");
 		SpringApplication.run (SpringBootDemoApplication.class, args);
 	}
 }
