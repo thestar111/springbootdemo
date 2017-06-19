@@ -10,6 +10,8 @@
  */
 package com.zping.controller;
 
+import com.zping.annotation.DynaLog;
+
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -32,8 +34,9 @@ public interface AccessResource
 	@Produces (MediaType.APPLICATION_JSON)
 	public Map<String, Object> test () throws Exception;
 
+	@DynaLog
 	@POST
-	@Path ("sayHello")
+	@Path ("/sayHello")
 	@Produces (MediaType.APPLICATION_JSON)
 	public Map<String, Object> sayHello () throws Exception;
 }

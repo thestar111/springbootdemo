@@ -11,6 +11,7 @@
 package com.zping.controller.impl;
 
 import com.google.common.collect.Maps;
+import com.zping.annotation.DynaLog;
 import com.zping.controller.AccessResource;
 import org.springframework.stereotype.Component;
 
@@ -25,6 +26,7 @@ import java.util.Map;
  * @since [产品/模块版本]
  */
 @Component
+@DynaLog
 public class AccessResourceImpl implements AccessResource
 {
 	@Override
@@ -35,6 +37,7 @@ public class AccessResourceImpl implements AccessResource
 		return maps;
 	}
 
+	@DynaLog
 	@Override
 	public Map<String, Object> sayHello () throws Exception
 	{
