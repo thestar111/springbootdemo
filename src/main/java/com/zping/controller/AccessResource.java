@@ -34,7 +34,6 @@ public interface AccessResource
 	@Produces (MediaType.APPLICATION_JSON)
 	public Map<String, Object> test () throws Exception;
 
-	@DynaLog
 	@POST
 	@Path ("/sayHello")
 	@Produces (MediaType.APPLICATION_JSON)

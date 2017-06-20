@@ -16,8 +16,6 @@ import com.zping.filter.AirDynamicLogFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.Priority;
-import javax.ws.rs.Priorities;
 import javax.ws.rs.container.DynamicFeature;
 import javax.ws.rs.container.ResourceInfo;
 import javax.ws.rs.core.FeatureContext;
@@ -33,23 +31,23 @@ import java.lang.reflect.Method;
  * @since [产品/模块版本]
  */
 @Provider
-@Priority (Priorities.USER + 1)
 public class DynamicLog implements DynamicFeature
 {
 
-	private static final Logger logger = LoggerFactory.getLogger(DynamicLog.class);
+	private static final Logger logger = LoggerFactory.getLogger (DynamicLog.class);
 
 	@Override
 	public void configure (ResourceInfo resourceInfo, FeatureContext context)
 	{
 		Method method = resourceInfo.getResourceMethod ();
-
+		System.out.println (
+				resourceInfo.getResourceClass () + " : " + resourceInfo.getResourceMethod () + " ---- " + resourceInfo
+						.getResourceMethod ().getAnnotation (DynaLog.class));
 		DynaLog dynaLog = resourceInfo.getResourceMethod ().getAnnotation (DynaLog.class);
-		System.out.println (resourceInfo.getResourceClass () + " : " + resourceInfo.getResourceMethod () + " ---- " + resourceInfo.getResourceMethod ().getAnnotation (DynaLog.class));
-		if(AccessResourceImpl.class.equals (resourceInfo.getResourceClass ()))
+		if (null != dynaLog)
 		{
 			//注入需要拦截的Filter
-			context.register (AirDynamicLogFilter.class) ;
+			context.register (AirDynamicLogFilter.class);
 		}
 	}
 }

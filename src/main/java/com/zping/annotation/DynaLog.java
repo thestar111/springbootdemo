@@ -10,6 +10,8 @@
  */
 package com.zping.annotation;
 
+import java.lang.annotation.*;
+
 /**
  * <动态日志自定义注解>
  *
@@ -18,6 +20,9 @@ package com.zping.annotation;
  * @see [自定义注解]
  * @since [产品/模块版本]
  */
+@Documented
+@Retention (RetentionPolicy.RUNTIME)
+@Target ({ ElementType.METHOD,ElementType.TYPE})
 public @interface DynaLog
 {
 }

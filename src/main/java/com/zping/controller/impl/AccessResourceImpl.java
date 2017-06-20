@@ -26,7 +26,6 @@ import java.util.Map;
  * @since [产品/模块版本]
  */
 @Component
-@DynaLog
 public class AccessResourceImpl implements AccessResource
 {
 	@Override
