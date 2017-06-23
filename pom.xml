@@ -22,6 +22,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		<docker.image.prefix>zhouping</docker.image.prefix>
 	</properties>
 
 	<dependencies>
@@ -142,6 +143,13 @@
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
+        <!-- H2 -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
 		<!-- springboot 中修改文件后自动reload的插件，修改完文件Ctrl + F9 make-下就可以了
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -164,6 +172,29 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.4.13</version>
+				<configuration>
+					<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+					<dockerHost>https://192.168.99.100:2376</dockerHost>
+					<!-- Dockerfile file  -->
+					<dockerDirectory>${project.basedir}/docker</dockerDirectory>
+					<dockerCertPath>C:\\Users\Administrator\\.docker\\machine\\machines\\default</dockerCertPath>
+					<serverId>docker-hub</serverId>
+					<registryUrl>http://192.168.0.11</registryUrl>
+					<exposes>20050</exposes>
+					<!-- resources是指那些需要和 Dockerfile 放在一起，在构建镜像时使用的文件 -->
+					<resources>
+						<resource>
+							<targetPath>/</targetPath>
+							<directory>${project.build.directory}</directory>
+							<include>${project.build.finalName}.jar</include>
+						</resource>
+					</resources>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

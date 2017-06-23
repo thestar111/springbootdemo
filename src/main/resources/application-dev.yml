@@ -24,3 +24,21 @@ spring:
       additional-paths: src/main/java
 logging:
   config: classpath:log4j.xml
+#Config Actuator Health, config auth false
+management:
+  port: 54001
+  security:
+    enabled: false
+  health:
+    mail:
+      enabled: false
+#从pom.xml中获取
+info:
+  app:
+    name: "@project.name@"
+    description: "@project.description@"
+    version: "@project.version@"
+    spring-boot-version: "@project.parent.version@"
+endpoints:
+  health:
+    sensitive: false

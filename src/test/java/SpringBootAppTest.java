@@ -40,6 +40,7 @@ public class SpringBootAppTest
 	public void addUser()
 	{
 		User user = new User ();
+		user.setId (3);
 		user.setPassword ("123456");
 		user.setUsername ("zhouping");
 		userMapper.addUser (user);

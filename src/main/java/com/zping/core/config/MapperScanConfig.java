@@ -32,7 +32,6 @@ public class MapperScanConfig
 	@Bean
 	public MapperScannerConfigurer mapperScannerConfigurer()
 	{
-		System.out.print ("after ... ");
 		MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer ();
 		mapperScannerConfigurer.setSqlSessionFactoryBeanName ("sqlSessionFactory");
 		mapperScannerConfigurer.setBasePackage ("com.zping.mapper");
